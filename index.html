@@ -14,22 +14,22 @@
     <div class="form_container">
       <form class="create_form">
         <input type="text" class="name" placeholder="Enter your Name">
-        <input type="email" class="email" placeholder="Enter your Email">
-        <button type="button" onclick="add()">Create</button>
+        <input type="text" class="role" placeholder="Enter your Role">
+        <button type="button" onclick="create()">Create</button>
       </form>
       <form class="update_form">
         <input type="text" class="id" hidden>
         <input type="text" class="uname">
-        <input type="email" class="uemail">
+        <input type="text" class="urole">
         <button type="button" onclick="update()">Update</button>
       </form>
       <div class="add_div">
-        <button class="add" onclick="create()">Add</button>
+        <button class="add" onclick="add()">Add</button>
       </div>
-      <table>
+      <table class="table">
         <thead>
           <th>Name</th>
-          <th>Email</th>
+          <th>Role</th>
           <th>Actions</th>
         </thead>
         <tbody class="data_table"></tbody>

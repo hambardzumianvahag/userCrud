@@ -1,8 +1,8 @@
 let data = [
 	{
 		id: 1,
-		name: 'Vahag',
-		email: 'hambardzumianvahag@gmail.com'
+		name: 'Vahag Hambardzumyan',
+		role: 'Admin'
 	}
 ]
 let dataIndex = 1
@@ -15,7 +15,7 @@ function readAll() {
 	objectData.map(elem => {
 		elements += `<tr>
             <td>${elem.name}</td>
-            <td>${elem.email}</td>
+            <td>${elem.role}</td>
             <td>
                 <button class='edit' onclick={edit(${elem.id})}>Edit</button>
                 <button class='delete' onclick={remove(${elem.id})}>Delete</button>
@@ -29,44 +29,52 @@ let addDiv = document.querySelector('.add_div')
 let createForm = document.querySelector('.create_form')
 let updateForm = document.querySelector('.update_form')
 
-function create() {
+function add() {
 	addDiv.style.display = 'none'
+	updateForm.style.display = 'none'
 	createForm.style.display = 'block'
 	document.querySelector('.name').value = ''
-	document.querySelector('.email').value = ''
+	document.querySelector('.role').value = ''
 }
-function add() {
+function create() {
 	let name = document.querySelector('.name').value
-	let email = document.querySelector('.email').value
+	let role = document.querySelector('.role').value
 	dataIndex++
 	let newObj = {
 		id: dataIndex,
 		name: name,
-		email: email
+		role: role
 	}
-	addDiv.style.display = 'block'
-	createForm.style.display = 'none'
-	data.push(newObj)
-	readAll()
+	if (name == '' || role == '') {
+		alert('Please fill all fields!')
+	}
+	else {
+		addDiv.style.display = 'block'
+		createForm.style.display = 'none'
+		data.push(newObj)
+		readAll()
+	}
 }
 
 function edit(id) {
+	createForm.style.display = 'none'
 	updateForm.style.display = 'block'
+	addDiv.style.display = 'none'
 	let obj = data.find(e => e.id == id)
 	document.querySelector('.id').value = obj.id
 	document.querySelector('.uname').value = obj.name
-	document.querySelector('.uemail').value = obj.email
+	document.querySelector('.urole').value = obj.role
 }
 
 function update() {
+	updateForm.style.display = 'none'
+	addDiv.style.display = 'block'
 	let id = parseInt(document.querySelector('.id').value)
 	let name = document.querySelector('.uname').value
-	let email = document.querySelector('.uemail').value
-
+	let role = document.querySelector('.urole').value
 	let index = data.findIndex(e => e.id == id)
-	data[index] = { id, name, email }
+	data[index] = { id, name, role }
 	readAll()
-	updateForm.style.display = 'none'
 }
 
 function remove(id) {
